@@ -149,7 +149,7 @@ const Footer = () => {
           <h3>Contact</h3>
           <ContactInfo>
             <p>
-              <a href="mailto:info@gomakeit.com">info@gomakeit.com</a>
+              <a href="mailto:info@gomakeit.pt">info@gomakeit.pt</a>
             </p>
           </ContactInfo>
         </FooterSection>

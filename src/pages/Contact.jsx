@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaClock, FaFacebook, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
@@ -206,26 +206,64 @@ const SubmitButton = styled.button`
   }
 `;
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+const StatusMessage = styled.div`
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  background-color: ${props => props.isError ? 'rgba(255, 0, 0, 0.1)' : 'rgba(0, 255, 0, 0.1)'};
+  color: ${props => props.isError ? '#ff4d4d' : '#4caf50'};
+`;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
+const Contact = () => {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ message: '', isError: false });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    setSubmitStatus({ message: 'Sending...', isError: false });
+
+    // Get form data
+    const form = e.target;
+    const data = {
+      from_name: form.from_name.value,
+      from_email: form.from_email.value,
+      phone: form.phone.value,
+      message: form.message.value,
+    };
+
+    console.log('Attempting to send email with data:', data);
+
+    // Send email using window.emailjs
+    if (window.emailjs) {
+      window.emailjs.send('service_wkk654n', 'template_ullq4fa', data)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          setSubmitStatus({ message: 'Message sent successfully!', isError: false });
+          form.reset();
+        }, function(error) {
+          console.log('FAILED...', error);
+          setSubmitStatus({ 
+            message: 'Failed to send message. Please try again.', 
+            isError: true 
+          });
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+        });
+    } else {
+      console.error('EmailJS not loaded');
+      setSubmitStatus({ 
+        message: 'Error: Email service not available. Please try again later.', 
+        isError: true 
+      });
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -252,7 +290,7 @@ const Contact = () => {
                   </div>
                   <div className="details">
                     <h3>Email Us</h3>
-                    <p>info@gomakeit.com</p>
+                    <p>info@gomakeit.pt</p>
                   </div>
                 </ContactMethod>
 
@@ -295,53 +333,56 @@ const Contact = () => {
               <form onSubmit={handleSubmit}>
                 <FormRow>
                   <FormGroup>
-                    <label htmlFor="name">Your Name</label>
+                    <label htmlFor="from_name">Name</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      id="from_name"
+                      name="from_name"
                       required
+                      placeholder="Your name"
                     />
                   </FormGroup>
-
                   <FormGroup>
                     <label htmlFor="phone">Phone Number</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
+                      placeholder="Your phone number"
                     />
                   </FormGroup>
                 </FormRow>
-
                 <FormGroup>
-                  <label htmlFor="email">Email Address</label>
+                  <label htmlFor="from_email">Email</label>
                   <input
                     type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    id="from_email"
+                    name="from_email"
                     required
+                    placeholder="Your email"
                   />
                 </FormGroup>
-
                 <FormGroup>
-                  <label htmlFor="message">Your Message</label>
+                  <label htmlFor="message">Message</label>
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     required
+                    placeholder="Your message"
                   ></textarea>
                 </FormGroup>
-
-                <SubmitButton type="submit">Send Message</SubmitButton>
+                <SubmitButton 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  style={{ opacity: isSubmitting ? 0.7 : 1 }}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </SubmitButton>
+                {submitStatus.message && (
+                  <StatusMessage isError={submitStatus.isError}>
+                    {submitStatus.message}
+                  </StatusMessage>
+                )}
               </form>
             </motion.div>
           </FormContainer>
