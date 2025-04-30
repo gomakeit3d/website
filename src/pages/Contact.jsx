@@ -211,14 +211,19 @@ const StatusMessage = styled.div`
   padding: 0.75rem;
   border-radius: 4px;
   text-align: center;
-  background-color: ${props => props.isError ? 'rgba(255, 0, 0, 0.1)' : 'rgba(0, 255, 0, 0.1)'};
-  color: ${props => props.isError ? '#ff4d4d' : '#4caf50'};
+  background: ${props => props.isError ? 'rgba(255, 77, 77, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
+  color: ${props => props.isError ? '#ff4d4d' : '#fff'};
+  border: 1px solid ${props => props.isError ? 'rgba(255, 77, 77, 0.2)' : 'rgba(255, 255, 255, 0.2)'};
+  backdrop-filter: blur(5px);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 `;
 
 const Contact = () => {
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ message: '', isError: false });
+  const [submitStatus, setSubmitStatus] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -226,7 +231,7 @@ const Contact = () => {
     if (isSubmitting) return;
     
     setIsSubmitting(true);
-    setSubmitStatus({ message: 'Sending...', isError: false });
+    setSubmitStatus('');
 
     // Get form data
     const form = e.target;
@@ -244,24 +249,21 @@ const Contact = () => {
       window.emailjs.send('service_wkk654n', 'template_ullq4fa', data)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
-          setSubmitStatus({ message: 'Message sent successfully!', isError: false });
+          setSubmitStatus('Message sent successfully!');
+          setIsError(false);
           form.reset();
         }, function(error) {
           console.log('FAILED...', error);
-          setSubmitStatus({ 
-            message: 'Failed to send message. Please try again.', 
-            isError: true 
-          });
+          setSubmitStatus('Failed to send message. Please try again.');
+          setIsError(true);
         })
         .finally(() => {
           setIsSubmitting(false);
         });
     } else {
       console.error('EmailJS not loaded');
-      setSubmitStatus({ 
-        message: 'Error: Email service not available. Please try again later.', 
-        isError: true 
-      });
+      setSubmitStatus('Error: Email service not available. Please try again later.');
+      setIsError(true);
       setIsSubmitting(false);
     }
   };
@@ -376,11 +378,11 @@ const Contact = () => {
                   disabled={isSubmitting}
                   style={{ opacity: isSubmitting ? 0.7 : 1 }}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  Send Message
                 </SubmitButton>
-                {submitStatus.message && (
-                  <StatusMessage isError={submitStatus.isError}>
-                    {submitStatus.message}
+                {submitStatus && (
+                  <StatusMessage isError={isError}>
+                    {submitStatus}
                   </StatusMessage>
                 )}
               </form>
