@@ -107,11 +107,10 @@ const SocialLinks = styled.div`
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.2rem;
     transition: all 0.3s ease;
 
     &:hover {
-      background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+      background: rgba(255, 255, 255, 0.2);
       transform: translateY(-3px);
     }
   }
@@ -317,7 +316,7 @@ const Contact = () => {
                   <a href="https://www.instagram.com/gomakeitpt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <FaInstagram />
                   </a>
-                  <a href="#" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/company/gomakeit/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <FaLinkedinIn />
                   </a>
                 </div>

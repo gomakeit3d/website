@@ -131,7 +131,7 @@ const Footer = () => {
           </p>
           <SocialLinks>
             <a href="https://www.instagram.com/gomakeitpt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <a href="https://www.linkedin.com/company/gomakeit/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
           </SocialLinks>
         </CompanyInfo>
 
