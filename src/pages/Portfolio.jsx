@@ -206,7 +206,7 @@ const ModalContent = styled(motion.div)`
 
 const ModalImage = styled.div`
   width: 100%;
-  height: 400px;
+  height: 600px;
   background: #2a2a2a;
   overflow: hidden;
 
@@ -409,6 +409,114 @@ const Portfolio = () => {
 
   const featuredProjects = [
     {
+      id: 10022,
+      title: "Padel Racket Keychain",
+      category: "3D Printing",
+      description: "Customized 3D printed padel racket keychains in various colors and popular brand designs.",
+      service: "3D Printing",
+      image: "/images/printed-products/22_05_2025.jpg",
+      title: "Aircraft with 3D printed custom wheel chocks",
+      description: "Functional 3D printed custom wheel chocks, designed for real-life use and made with UV- and heat-resistant filament in black and yellow for high visibility and durability."
+    },
+    {
+      id: 10021,
+      title: "Counter-Strike Themed Cosplay Sniper",
+      category: "3D Printing",
+      description: "Ultra-realistic 3D printed model of the iconic AWP Asiimov from Counter-Strike, crafted in white, black, and orange.",
+      service: "3D Printing",
+      image: "/images/printed-products/21_05_2025.jpg"
+    },
+    {
+      id: 10020,
+      title: "",
+      category: "3D Printing",
+      description: "",
+      service: "3D Printing",
+      image: "/images/printed-products/20_05_2025.jpg",
+      title: "Counter-Strike Themed Cosplay Knives",
+      description: "Ultra-realistic 3D printed models of the iconic Karambit and Butterfly knives from Counter-Strike, crafted in black and multicolor silk filament. Safe display pieces designed without any sharp edges or cutting functionality."
+    },
+    {
+      id: 10019,
+      title: "",
+      category: "3D Printing",
+      description: "",
+      service: "3D Printing",
+      image: "/images/printed-products/19_05_2025.jpg",
+      title: "Astronaut Trophy",
+      description: "Customized 20cm astronaut trophy with embossed logo and lettering."
+    },
+    {
+      id: 10018,
+      title: "",
+      category: "3D Printing",
+      description: "",
+      service: "3D Printing",
+      image: "/images/printed-products/18_05_2025.jpg",
+      title: "Ultra lightweight Valentine's Vase",
+      description: "20cm ultra lightweight vase with embossed hearts for valentine's day, 3D printed in deep red."
+    },
+    {
+      id: 10017,
+      title: "",
+      category: "3D Printing",
+      description: "",
+      service: "3D Printing",
+      image: "/images/printed-products/17_05_2025.jpg",
+      title: "Geometric Vase Miniature",
+      description: "Geometric twisted vase, 3D printed in white, 7cm tall. Made as a decorative gift for wedding guests."
+    },
+    {
+      id: 10016,
+      title: "",
+      category: "3D Printing",
+      description: "",
+      service: "3D Printing",
+      image: "/images/printed-products/16_05_2025.jpg",
+      title: "Jordan 1 Model",
+      description: "Ultrarealistic 3D model of the iconic Jordan 1 sneaker in red, white, and black."
+    },
+    {
+      id: 10014,
+      title: "Articulated Dragon",
+      category: "3D Printing",
+      description: "40cm articulated dragon model printed in silk multicolor filament.",
+      service: "3D Printing",
+      image: "/images/printed-products/14_05_2025.jpg"
+    },
+    {
+      id: 10013,
+      title: "Pokémon Bundle",
+      category: "3D Printing",
+      description: "Bundle pack of 11 unique Pokémon miniature models.",
+      service: "3D Printing",
+      image: "/images/printed-products/13_05_2025.jpg"
+    },
+    {
+      id: 10012,
+      title: "Aircraft Wheel Chock",
+      category: "3D Printing",
+      description: "Durable UV and heat resistant aircraft wheel chock in black and yellow.",
+      service: "3D Printing",
+      image: "/images/printed-products/12_05_2025.jpg"
+    },
+    {
+      id: 10011,
+      title: "Padel Racket Keychain",
+      category: "3D Printing",
+      description: "Customized 3D printed padel racket keychains in various colors and popular brand designs.",
+      service: "3D Printing",
+      image: "/images/printed-products/11_05_2025.jpg"
+    },
+    {
+      id: 0,
+      title: "Wall Art Logo",
+      category: "3D Printing",
+      description: "Custom 3D printed wall art logo in white and turquoise lettering.",
+      service: "3D Printing",
+      image: "/images/printed-products/10_05_2025.jpg"
+    },
+    {
       id: 1,
       title: "Smart Brand Keychain",
       category: "3D Printing",
@@ -519,54 +627,6 @@ const Portfolio = () => {
         { quantity: "10+ units", price: "3-6€" }
       ],
       image: "/images/printed-products/11.jpg"
-    },
-    {
-      id: 12,
-      title: "Smart Brand Keychain",
-      category: "3D Printing",
-      description: "Customized 3D printed keychain with brand logo, designed to automatically open your Instagram profile when tapped.",
-      service: "3D Printing",
-      extraHardware: "Stainless steel keychain, NFC tag",
-      pricing: [
-        { quantity: "1 unit", price: "8-12€" },
-        { quantity: "5+ units", price: "6-8€" },
-        { quantity: "10+ units", price: "3-6€" }
-      ],
-      image: "/images/printed-products/12.jpg"
-    },
-    {
-      id: 13,
-      title: "Christmas Pokémon Keychain",
-      category: "3D Printing",
-      description: "Snowman-themed Pikachu keychain, 3D printed in full christmas colors.",
-      service: "3D Printing",
-      extraHardware: "Stainless steel keychain",
-      pricing: [
-        { quantity: "1 unit", price: "8-12€" },
-        { quantity: "5+ units", price: "6-8€" },
-        { quantity: "10+ units", price: "3-6€" }
-      ],
-      image: "/images/printed-products/13.jpg"
-    },
-    {
-      id: 14,
-      title: "Christmas Moose Napkin Holder",
-      category: "3D Printing",
-      description: "Holiday-themed napkin holder in the shape of a moose, 3D printed in christmas green.",
-      service: "3D Printing",
-      extraHardware: "None",
-      priceRange: "4-10€",
-      image: "/images/printed-products/14.jpg"
-    },
-    {
-      id: 15,
-      title: "Santa Claus Christmas Ornament",
-      category: "3D Printing",
-      description: "3D printed Santa Claus ornament designed to hang on a Christmas tree.",
-      service: "3D Printing",
-      extraHardware: "String loop for tree hanging",
-      priceRange: "3-10€",
-      image: "/images/printed-products/15.jpg"
     },
     {
       id: 16,
@@ -763,25 +823,6 @@ const Portfolio = () => {
                   <DetailGroup>
                     <h3>Extra Hardware</h3>
                     <p>{selectedProject.extraHardware}</p>
-                  </DetailGroup>
-                )}
-
-                {selectedProject.pricing ? (
-                  <DetailGroup>
-                    <h3>Price range per unit</h3>
-                    <PriceTable>
-                      {selectedProject.pricing.map((price, index) => (
-                        <div key={index} className="price-row">
-                          <span className="quantity">{price.quantity}</span>
-                          <span className="price">{price.price}</span>
-                        </div>
-                      ))}
-                    </PriceTable>
-                  </DetailGroup>
-                ) : selectedProject.priceRange && (
-                  <DetailGroup>
-                    <h3>Price range</h3>
-                    <p>{selectedProject.priceRange}</p>
                   </DetailGroup>
                 )}
 
